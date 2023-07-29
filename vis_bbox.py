@@ -48,7 +48,7 @@ def main():
     images.sort()
     annotations.sort()
 
-    color = (255,0,0)
+    color = [(255,0,0),(0,255,0),(0,0,255),(255,255,0),(0,255,255)]
     for (image, annotation) in zip(images, annotations):
         img = cv2.imread(os.path.join(args.folder_path,image))
         height, width, _ = img.shape
@@ -63,8 +63,8 @@ def main():
             ymin = int((y*height) - (h * height)/2.0)
             xmax = int((x*width) + (w * width)/2.0)
             ymax = int((y*height) + (h * height)/2.0)
-            cv2.rectangle(img, (xmin, ymin), (xmax, ymax), color, 2)
-            cv2.putText(img, class_names[int(class_idx)], (xmin, ymin - 5), cv2.FONT_HERSHEY_SIMPLEX,0.5, color, 2)
+            cv2.rectangle(img, (xmin, ymin), (xmax, ymax), color[class_idx], 2)
+            cv2.putText(img, class_names[int(class_idx)], (xmin, ymin - 5), cv2.FONT_HERSHEY_SIMPLEX,0.5, color[class_idx], 2)
 
         # cv2.imshow(image, img)
         # cv2.waitKey(0)
